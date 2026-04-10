@@ -35,7 +35,9 @@ void uart_printf(const char *format, ...)
     int len = vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
 
-    HAL_UART_Transmit(&huart6, (uint8_t *)buffer, len, HAL_MAX_DELAY);
+    if (len < 0) return;
+    if ((size_t)len > sizeof(buffer) - 1) len = sizeof(buffer) - 1;
+    HAL_UART_Transmit(&huart6, (uint8_t *)buffer, (uint16_t)len, HAL_MAX_DELAY);
 }
 
 /**

@@ -10,7 +10,7 @@
 #define user_malloc malloc
 #endif
 
-uint8_t GlobalDebugMode = 7;
+uint8_t GlobalDebugMode = 0;
 
 //���ٿ���
 float Sqrt(float x)
@@ -219,6 +219,7 @@ void OLS_Init(Ordinary_Least_Squares_t *OLS, uint16_t order)
     OLS->Count = 0;
     OLS->x = (float *)user_malloc(sizeof(float) * order);
     OLS->y = (float *)user_malloc(sizeof(float) * order);
+    if (OLS->x == NULL || OLS->y == NULL) return;
     OLS->k = 0;
     OLS->b = 0;
     memset((void *)OLS->x, 0, sizeof(float) * order);
@@ -257,8 +258,19 @@ void OLS_Update(Ordinary_Least_Squares_t *OLS, float deltax, float y)
         OLS->t[3] += OLS->y[i];
     }
 
-    OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1]);
-    OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / (OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1]);
+    {
+        float denom = OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1];
+        if (fabsf(denom) < 1e-10f)
+        {
+            OLS->k = 0;
+            OLS->b = (OLS->Count > 0) ? (OLS->t[3] / OLS->Count) : 0;
+        }
+        else
+        {
+            OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / denom;
+            OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / denom;
+        }
+    }
 
     OLS->StandardDeviation = 0;
     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
@@ -301,7 +313,17 @@ float OLS_Derivative(Ordinary_Least_Squares_t *OLS, float deltax, float y)
         OLS->t[3] += OLS->y[i];
     }
 
-    OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1]);
+    {
+        float denom = OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1];
+        if (fabsf(denom) < 1e-10f)
+        {
+            OLS->k = 0;
+        }
+        else
+        {
+            OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / denom;
+        }
+    }
 
     OLS->StandardDeviation = 0;
     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)
@@ -356,8 +378,19 @@ float OLS_Smooth(Ordinary_Least_Squares_t *OLS, float deltax, float y)
         OLS->t[3] += OLS->y[i];
     }
 
-    OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / (OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1]);
-    OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / (OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1]);
+    {
+        float denom = OLS->t[0] * OLS->Order - OLS->t[1] * OLS->t[1];
+        if (fabsf(denom) < 1e-10f)
+        {
+            OLS->k = 0;
+            OLS->b = (OLS->Count > 0) ? (OLS->t[3] / OLS->Count) : 0;
+        }
+        else
+        {
+            OLS->k = (OLS->t[2] * OLS->Order - OLS->t[1] * OLS->t[3]) / denom;
+            OLS->b = (OLS->t[0] * OLS->t[3] - OLS->t[1] * OLS->t[2]) / denom;
+        }
+    }
 
     OLS->StandardDeviation = 0;
     for (uint16_t i = OLS->Order - OLS->Count; i < OLS->Order; ++i)

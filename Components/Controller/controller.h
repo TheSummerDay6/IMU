@@ -12,7 +12,7 @@
 #include <math.h>
 
 #ifndef abs
-#define abs(x) ((x > 0) ? x : -x)
+#define abs(x) (((x) > 0) ? (x) : -(x))
 #endif
 
 #ifndef user_malloc

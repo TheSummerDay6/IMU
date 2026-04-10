@@ -1,8 +1,3 @@
-# 惯导姿态解算项目
-
-<center><div style='height:2mm;'></div><div style="font-family:楷体;font-size:12pt;">王洪玺</div></center>
-<center><span style="font-family:楷体;font-size:9pt">哈尔滨工程大学创梦之翼战队，</span><span style="font-family:Times New Roman;font-size:9pt">wanghongxi2001@foxmail.com<br/></span>
-
 ## 硬件平台说明
 
 　　本项目硬件平台为RoboMaster C型开发板，Toolchain包含MDK5与Makefile，可使用Ozone进行调试（std.jdebug）。

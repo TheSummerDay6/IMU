@@ -1,7 +1,9 @@
 #include "ins_task.h"
 #include "controller.h"
-#include "QuaternionEKF.h"
 #include "bsp_PWM.h"
+#include "bsp_dwt.h"
+#include "user_lib.h"
+#include <string.h>
 
 INS_t INS;
 IMU_Param_t IMU_Param;
@@ -224,7 +226,7 @@ void IMU_Temperature_Ctrl(void)
 {
     PID_Calculate(&TempCtrl, BMI088.Temperature, RefTemp);
 
-    TIM_Set_PWM(&htim10, TIM_CHANNEL_1, float_constrain(float_rounding(TempCtrl.Output), 0, UINT32_MAX));
+    TIM_Set_PWM(&htim10, TIM_CHANNEL_1, float_constrain(float_rounding(TempCtrl.Output), 0, UINT16_MAX));
 }
 
 //------------------------------------functions below are not used in this demo-------------------------------------------------

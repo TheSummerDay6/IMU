@@ -1,15 +1,3 @@
-/**
-  ******************************************************************************
-  * @file    transfer_function.h
-  * @author  Wang Hongxi
-  * @version V1.0.0
-  * @date    2020/5/12
-  * @brief   
-  ******************************************************************************
-  * @attention 
-  *
-  ******************************************************************************
-  */
 #ifndef __TRANSFER_FUNCTION_H
 #define __TRANSFER_FUNCTION_H
 
@@ -24,7 +12,7 @@
 
 typedef struct
 {
-    uint8_t Order; //系统阶数
+    uint8_t Order; //系统锟斤拷锟斤拷
 
     double *NUM;
     double *DEN;

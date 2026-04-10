@@ -1,18 +1,3 @@
-/**
- ******************************************************************************
- * @file    QuaternionEKF.c
- * @author  Wang Hongxi
- * @version V1.2.0
- * @date    2022/3/8
- * @brief   attitude update with gyro bias estimate and chi-square test
- ******************************************************************************
- * @attention
- * 1st order LPF transfer function:
- *     1
- *  ———————
- *  as + 1
- ******************************************************************************
- */
 #include "QuaternionEKF.h"
 
 QEKF_INS_t QEKF_INS;

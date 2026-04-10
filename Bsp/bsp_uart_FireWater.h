@@ -1,12 +1,3 @@
-/**
-  * @file     bsp_uart_firewater.h
-  * @brief    VOFA+ FireWater协议接口
-  * @author   再睡一夏
-  * @date     2026-01-26
-  * @version  1.0
-  * @note     FireWater协议：文本格式，以换行符\\n结束一帧
-  */
-
 #ifndef __BSP_UART_FIREWATER_H
 #define __BSP_UART_FIREWATER_H
 

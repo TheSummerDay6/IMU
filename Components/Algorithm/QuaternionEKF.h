@@ -1,15 +1,3 @@
-/**
- ******************************************************************************
- * @file    QuaternionEKF.h
- * @author  Wang Hongxi
- * @version V1.2.0
- * @date    2022/3/8
- * @brief   attitude update with gyro bias estimate and chi-square test
- ******************************************************************************
- * @attention
- *
- ******************************************************************************
- */
 #ifndef _QUAT_EKF_H
 #define _QUAT_EKF_H
 #include "kalman_filter.h"

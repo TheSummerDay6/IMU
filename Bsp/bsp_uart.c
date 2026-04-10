@@ -1,12 +1,3 @@
-/**
- * @file     bsp_uart.c
- * @brief    UART通信模块
- * @author   再睡一夏
- * @date     2026-01-26
- * @version  1.0
- * @note     STM32F4 UART6驱动，支持printf格式输出和指令解析
- */
-
 #include "bsp_uart.h"
 #include "stm32f4xx_it.h"  
 #include "usart.h"

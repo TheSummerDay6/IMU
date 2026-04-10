@@ -1,11 +1,3 @@
-/**
-  * @file     bsp_uart_FireWater.c
-  * @brief    VOFA+ FireWater协议实现
-  * @author   再睡一夏
-  * @date     2026-01-26
-  * @version  1.0
-  */
-
 #include "bsp_uart_FireWater.h"
 #include "bsp_uart.h"  
 #include <string.h>

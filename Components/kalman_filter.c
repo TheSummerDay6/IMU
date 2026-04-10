@@ -1,12 +1,4 @@
 /**
- ******************************************************************************
- * @file    kalman filter.c
- * @author  Wang Hongxi
- * @version V1.2.2
- * @date    2022/1/8
- * @brief   C implementation of kalman filter
- ******************************************************************************
- * @attention
  * 该卡尔曼滤波器可以在传感器采样频率不同的情况下，动态调整矩阵H R和K的维数与数值。
  * This implementation of kalman filter can dynamically adjust dimension and
  * value of matrix H R and K according to the measurement validity under any

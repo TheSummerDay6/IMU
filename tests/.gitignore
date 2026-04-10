@@ -1,0 +1,4 @@
+# Test binaries
+test_user_lib
+test_controller
+test_transfer_function
